@@ -1,0 +1,8 @@
+function model = update_model(model, f_t, final_xatmin)
+
+model.n = model.n + 1;
+model.X(model.n,:) = final_xatmin;
+model.f = [model.f', f_t]';
+
+model = update_kernel(model, final_xatmin);
+
