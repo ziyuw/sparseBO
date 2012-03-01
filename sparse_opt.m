@@ -13,21 +13,28 @@ function sparse_opt(objective_func, num_iter, model)
 %  Compute k_{t-1}(x)
 
 opt.maxevals = 500;
-opt.maxits = 30;
+opt.maxits = 100;
 opt.showits = 0;
 
-for i = 1:num_iter
-    problem.f = @(x)-ei(model, x');
-    [ret_minval, final_xatmin, history] = Direct(problem, model.bounds);
 
-    fprintf('The final value of');
-    disp(final_xatmin');
+
+for i = 1:num_iter
+    problem.f = @(x)-1*ei(model, x');
+    
+%      model.sparse_kernel
+    
+    [ret_minval, final_xatmin, history] = direct(problem, model.bounds, opt);
+
+
 
     f_t = objective_func(final_xatmin');
     model = update_model(model, f_t, final_xatmin');
-
-%      problem.f = @(x)temp(1, x);
-%      bounds = [-100,100]
+    
+    
+	disp(final_xatmin');
+	disp(f_t);
+%      problem.f = @(x)-temp(1, x);
+%      bounds = [-100,100];
 %      [ret_minval, final_xatmin, history] = Direct(problem, bounds, opt);
 %  
 %      final_xatmin
