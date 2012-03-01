@@ -17,4 +17,4 @@ hyp = [log(0.5);0];
 
 model = init_model(d, bounds, init_pt, init_f, hyp, vu);
 
-sparse_opt(objective_fct, 100, model);
+sparse_opt(objective_fct, 1000, model);
