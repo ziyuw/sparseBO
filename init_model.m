@@ -1,10 +1,12 @@
 function model = init_model(d, bounds, init_pt, init_f, hyp, vu)
 
+model.noise = 0.1
+
 model.hyp = hyp;
 model.bounds = bounds;
 
-model.sparse_kernel = covSEiso(model.hyp, init_pt, init_pt)+1;
-model.sparse_kernel_inv = 1/covSEiso(model.hyp, init_pt, init_pt);
+model.sparse_kernel = covSEiso(model.hyp, init_pt, init_pt) + model.noise;
+model.sparse_kernel_inv = 1/(covSEiso(model.hyp, init_pt, init_pt) + model.noise);
 
 model.dict = zeros(10000, d);
 model.dict(1, :) = init_pt;

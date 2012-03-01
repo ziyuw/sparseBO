@@ -15,5 +15,5 @@ Ak_x = model.A'*k_x;
 kk = model.A'*model.f;
 
 
-mean = Ak_x'*inv(model.sparse_kernel)*kk;
-var = k_tt - Ak_x'*inv(model.sparse_kernel)*Ak_x;
+mean = Ak_x'*model.sparse_kernel_inv*kk;
+var = k_tt - Ak_x'*model.sparse_kernel_inv*Ak_x
