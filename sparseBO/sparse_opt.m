@@ -20,11 +20,11 @@ for i = 1:num_iter
     fprintf('Iteration: %4i\n', i)
     problem.f = @(x)-1*ei(model, x');
     [ret_minval, final_xatmin, history] = direct(problem, model.bounds, opt);
-    f_t = objective_func((model.A*final_xatmin)');
+    f_t = objective_func((final_xatmin)');
     model = update_model(model, f_t, final_xatmin');
     
     if model.display
-        disp((model.A*final_xatmin)');
+        disp((final_xatmin)');
         disp(f_t);
     end
 end

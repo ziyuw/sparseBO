@@ -2,8 +2,8 @@ function model = update_kernel(model, x)
 
 m = model.m;
 
-k_x = covSEiso(model.hyp, model.X(1:m,:), x);
-k_tt = covSEiso(model.hyp, x, x);
+k_x = model.cov_model(model.hyp, model.X(1:m,:), x);
+k_tt = model.cov_model(model.hyp, x, x);
 
 a_t = model.sparse_kernel_inv*k_x;
 delta_t = k_tt + model.noise - a_t'*k_x;
