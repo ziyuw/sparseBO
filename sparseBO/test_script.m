@@ -7,11 +7,11 @@ init_f = objective(init_pt);
 
 hyp = [log(0.5);0];
 
-var = 0.01;
+var = 0.0001;
 
-model = init_sparse_model(d, bounds, init_pt, init_f, hyp, var, 0.000001);
+model = init_sparse_model(d, bounds, init_pt, init_f, hyp, var, 0.0001);
 
-model = sparse_opt(@objective, 100, model);
+model = sparse_opt(@objective, 400, model);
 
 % plot2d(model)
 

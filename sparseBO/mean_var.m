@@ -18,22 +18,27 @@ var = (model.noise*k_tt - (k_x'*k_x - pre_left'*left))/model.noise;
 
 % var-var_try
 
-true_var = k_tt - k_x'*model.sparse_kernel_full_inv*k_x;
+%  true_var = k_tt - k_x'*model.sparse_kernel_full_inv*k_x;
 
 
 % var = true_var;
 
-if var < 0
-    
-%     norm(model.sparse_kernel_inv)
-%     norm(inv(model.noise*eye(model.n,model.n)+model.A_T'*model.L*model.L'*model.A_T))
-    
-    nn = norm(inv(model.noise*eye(model.n,model.n)+model.A_T'*model.L*model.L'*model.A_T)-model.sparse_kernel_full_inv);
+%  if var < 0
+%      
+%  %     norm(model.sparse_kernel_inv)
+%  %     norm(inv(model.noise*eye(model.n,model.n)+model.A_T'*model.L*model.L'*model.A_T))
+%      
+%      nn = norm(inv(model.noise*eye(model.n,model.n)+model.A_T'*model.L*model.L'*model.A_T)-model.sparse_kernel_full_inv);
+%  
+%      c = cond(model.noise*eye(model.n,model.n)+model.A_T'*model.L*model.L'*model.A_T);
+%      fprintf('Variance below zero!!!! %f with condition: %f  %f\n', var, c, nn)
+%  end
 
-    c = cond(model.noise*eye(model.n,model.n)+model.A_T'*model.L*model.L'*model.A_T);
-    fprintf('Variance below zero!!!! %f  %f  %f with condition: %f  %f\n', var, true_var, true_var - var, c, nn)
+if abs(var) < model.vu
+    var = model.vu;
 end
 
-if var < model.vu
-    var = model.vu;
+if var < -model.vu
+	fprintf('Variance below zero!!!! %f \n', var);
+	whatthehell;
 end

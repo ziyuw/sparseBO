@@ -21,7 +21,7 @@ model.f = init_f;
 
 model.m = 1; % The number of points in the kernel
 model.n = 1; % The number of total observations
-
+model.indices = 1;
 
 model.max_val = init_f; % This is used by EI
 model.display = 1;
