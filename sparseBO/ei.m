@@ -4,6 +4,5 @@ function ei = expected_improvement(model, x, max_val)
 
 sigma = sqrt(var);
 
-ei = mu+sigma;
-% Z = (mu - model.max_val)/sigma;
-% ei = (mu - model.max_val)*normcdf(Z, 0, 1) + sigma*normpdf(Z,0,1);
+Z = (mu - model.max_val)/sigma;
+ei = (mu - model.max_val)*normcdf(Z, 0, 1) + sigma*normpdf(Z,0,1);

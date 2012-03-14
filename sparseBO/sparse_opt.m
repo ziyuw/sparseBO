@@ -12,8 +12,8 @@ function model = sparse_opt(objective_func, num_iter, model)
 
 %  Compute k_{t-1}(x)
 
-opt.maxevals = 500;
-opt.maxits = 100;
+opt.maxevals = 100;
+opt.maxits = 50;
 opt.showits = 0;
 
 for i = 1:num_iter

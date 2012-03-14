@@ -34,11 +34,15 @@ var = (model.noise*k_tt - (k_x'*k_x - pre_left'*left))/model.noise;
 %      fprintf('Variance below zero!!!! %f with condition: %f  %f\n', var, c, nn)
 %  end
 
-if abs(var) < model.vu
-    var = model.vu;
+if var < 0
+	fprintf('Variance below zero!!!! %f \n', var);
+%  	whatthehell;
 end
 
-if var < -model.vu
-	fprintf('Variance below zero!!!! %f \n', var);
-	whatthehell;
-end
+var = max(0, var);
+
+%  if var < 0 && abs(var) < model.noise
+%      var = model.vu;
+%  end
+%  
+
