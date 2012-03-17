@@ -9,7 +9,7 @@ right = model.Q_T*model.f;
 
 
 mean = (model.f'*k_x - left'*right)/model.noise;
-var = (model.noise*k_tt - (k_x'*k_x - pre_left'*left))/model.noise;
+var = k_tt - (k_x'*k_x - pre_left'*left)/model.noise;
 
 
 
